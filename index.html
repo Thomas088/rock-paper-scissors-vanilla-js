@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="./css/normalize.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:600,700&display=swap" rel="stylesheet">
+  <title>Rock, Paper, Scissors</title>
+</head>
+<body>
+<!-- CONTAINER WRAPPER -->
+<div class="wrapper">
+<!-- HEADER-->
+    <div class="header-game">
+      <div class="container-logo">
+        <img src="./images/logo.svg" alt="" class="logo">
+      </div>
+      <div class="score-panel">
+        <p class="score-message">SCORE</p>
+        <p id="scoreInScreen">0</p>
+      </div>
+    </div>
+      <div class="sail">
+        <div class="container-rules-img">
+          <h1 class="rules-modal-title">RULES</h1>
+          <img src="./images/image-rules.svg" alt="">
+          <div id="closeModal">˟</div>
+        </div>
+      </div>     
+      <button type="button" id="openModal" class="rules">RULES</button>
+
+<!-- MESSAGES CHOICE PAD -->
+<div class="container-msg-choice">
+  <span class="your-choice-msg">YOU PICKED</span>
+  <span class="house-choice-msg">THE HOUSE PICKED</span>
+</div>
+<!-- PADS -->
+      <div class="container-pads">
+        <div class="pad" id="paper"><img src="./images/icon-paper.svg" alt=""></div>
+        <div class="pad" id="rock"><img src="./images/icon-rock.svg" alt=""></div>
+        <div class="pad" id="scissors"><img src="./images/icon-scissors.svg" alt=""></div>
+        <div class="response-pad"></div> <!-- INITIALIZED AS A EMPTY PAD -->
+      </div>
+<!-- MESSAGE AND REPLAY -->
+      <div class="replay-container">
+        <span class="replay-msg"></span>
+        <button class="replay-btn">PLAY AGAIN</button>
+      </div>
+</div>
+
+  <!-- ATTRIBUTION--> 
+  <!-- <div class="attribution">
+    <span>Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+     Coded by <a href="#">Kouadio Thomas</a>.</span>
+  </div> -->
+
+<!-- JS -->
+<script src="./js/app.js"></script>
+</body>
+</html>

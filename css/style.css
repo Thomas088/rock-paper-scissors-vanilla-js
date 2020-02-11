@@ -1,0 +1,520 @@
+:root {
+ /* -------- COLOR PALETTE --------- */
+
+--scissors-radient : linear-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%));
+--paper-gradient: linear-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%));
+--rock-gradient: linear-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%));
+--lizard-gradient: linear-gradient(hsl(261, 73%, 60%), hsl(261, 72%, 63%));
+--cyan: linear-gradient(hsl(189, 59%, 53%), hsl(189, 58%, 57%));
+--dark-text: hsl(229, 25%, 31%);
+--score-text: hsl(229, 64%, 46%);
+--header-outline: hsl(217, 16%, 45%);
+--radial-gradient: linear-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
+}
+
+div {
+     box-sizing: border-box; 
+}
+
+ /* -------- DESKTOP --------- */
+
+ .wrapper {
+     max-width: 1440px;
+     margin: 0 auto;
+ }
+
+.header-game {
+    width: 50%;
+    margin: 2rem auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+ /* -------- ATTRIBUTION --------- */
+
+/* .attribution {
+    display: block;
+    width: 100%;
+    position: absolute;
+    bottom: 2rem;
+    left: 0;
+    font-size: 1rem; 
+    text-align: center;
+    color:#fff;
+} */
+
+/* .attribution span {
+    text-align: center;
+}
+
+.attribution a { 
+    color: hsl(228, 45%, 44%); 
+} */
+
+
+@media screen and (min-width: 0px) {
+
+    /* -------- GENERAL --------- */
+
+    html {
+        font-size: 14px;
+        font-family: 'Barlow Semi Condensed', sans-serif;
+        overflow: hidden;
+    }
+    
+    body {
+        background: var(--radial-gradient) no-repeat center fixed;
+    }
+    
+    
+    /* -------- HEADER --------- */
+
+    .header-game {
+        border: 2px solid rgba(255,255,255, 0.4);
+        border-radius: 6px;
+        padding: 1rem;
+    }
+
+    .container-logo {
+        align-items: center;
+    }
+
+    .logo {
+        width: 6rem;
+        height: 4rem;
+    }
+
+    .container-logo .logo {
+    margin-top: 0.6rem;
+    }
+
+  /* -------- SCORE--------- */
+
+    .score-panel {
+        background-color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 0 1rem;
+    }
+
+    .score-message {
+        font-size: 0.8rem;
+        margin: 0;
+        padding: 0.8rem 0 0 0;
+        letter-spacing: 1.5px;
+        color: hsl(214, 47%, 23%);
+    }
+
+    #scoreInScreen {
+        font-weight: 700;
+        font-size: 2rem;
+        margin: 0;
+        padding-top: 0.2rem;
+        color: var(--dark-text);
+    }
+
+    /* -------- PADS CONTAINER --------- */
+
+    .container-pads {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        top: 5rem;
+        width: 100%;
+        display: flex;
+        margin: auto;
+    }
+
+    .pad {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 8rem;
+        height: 8rem;
+        background-color: #fff;
+        border-radius: 50%;
+        cursor: pointer;
+        opacity: 1;
+        transition: all .150s ease-in-out; 
+    }
+
+    .pad::after {
+        content: '';
+        transform: scale(0);
+        position: absolute;
+        z-index: -1;
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        background-color: rgb(255, 255, 255, 0.1);
+        transition: all .250s ease-in-out;
+    }
+
+    .pad:first-of-type { /* PAPER */
+        left: 2rem;
+        border: 15px solid hsl(230, 89%, 62%);
+    }
+
+    .pad:nth-of-type(2) {  /* ROCK */ 
+        top: 9rem; 
+        border: 15px solid hsl(349, 71%, 52%);
+    }
+
+    .pad:nth-of-type(3) { /* SCISSORS */
+        right: 2rem;
+        border: 15px solid hsl(40, 84%, 53%);
+    }
+    
+    .response-pad.response-rock {
+        background-image: url(../images/icon-rock.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        border: 15px solid hsl(349, 71%, 52%);
+    }
+
+    .response-pad.response-paper {
+        background-image: url(../images/icon-paper.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        border: 15px solid hsl(230, 89%, 62%);
+    }
+
+    .response-pad.response-scissors {
+        background-image: url(../images/icon-scissors.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        border: 15px solid hsl(40, 84%, 53%);
+    }
+
+
+    .pad:hover::after {
+        transform: scale(2.5);
+    }
+
+    .pad::before {
+        content: '';
+        position: absolute;
+        width: 9rem;
+        height: 9rem;
+        z-index: -2;
+        top: -7px;
+        right: 0;
+        bottom: 0;
+        left: -7px;
+        border-radius: inherit;
+    }
+
+    .response-pad {
+        display: none;
+    }
+
+    .response-pad.is-visible {
+        display: flex;
+        position: relative;
+        right: 5.5rem;
+        width: 8rem;
+        height: 8rem;
+        border-radius: 50%;
+        color: black;
+        background-color: #fff;
+        transition: all .150s ease-in-out;  
+    }
+
+    /* CLASSES FOR HIDE AND DISABLE PADS */
+
+    .invisible {
+        opacity: 0;
+    }
+
+    .no-interact {
+        pointer-events: none;
+    }
+
+
+    /* -------- MESSAGE CHOICE --------- */
+
+    .container-msg-choice {
+        opacity: 0;
+    }
+
+    .container-msg-choice.is-visible {
+        position: relative;
+        top: 4rem;
+        text-align: center;
+        opacity: 1;
+        transition: opacity .150s ease-in-out;
+    }
+
+    .your-choice-msg, .house-choice-msg {
+        color:#fff;
+        letter-spacing: 2px;
+        opacity: 0.8;
+        position: relative;
+        /* opacity: 0; */
+        transition: opacity 0.150s ease-in-out; 
+    }
+
+    .your-choice-msg {
+        left: -1rem;
+    }
+
+    .house-choice-msg {
+        left: 3rem;
+    }
+
+    #paper.paper-picked {
+        transform: translate(4rem);
+        transition: .150s ease-in-out; 
+    }
+
+    #rock.rock-picked {
+        transform: translate(-2.1rem, -9rem);
+        transition: .150s ease-in-out; 
+    }
+
+    #scissors.scissors-picked {
+        transform: translate(-8.3rem);
+    }
+
+    /* -------- REPLAY MESSAGE--------- */
+
+    .replay-container {
+        display: none;
+    }
+
+    .replay-container.is-visible {
+        text-align: center;
+        display: block;
+        color: white;
+        transition: .150s ease-in-out; 
+        margin-top: 6rem;
+    }
+
+    .replay-msg {
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        font-size: 2rem;
+        display: block;
+    }
+
+     .replay-btn {
+        border: none;
+        font-size: 1rem;
+        color: hsl(237, 49%, 15%);
+        background-color: #fff;
+        letter-spacing: 2px;
+        padding: 0.5rem 2rem;
+        border-radius: 6px;
+        cursor: pointer;
+    } 
+
+
+    /* -------- RULES CONTAINER --------- */
+
+    .rules {
+        position: fixed;
+        display: block;
+        bottom: 1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-left: auto;
+        margin-right: auto;
+        appearance: none;
+        border: none;
+        background-color: transparent;
+        border: 2px solid rgba(255,255,255, 0.4);
+        border-radius: 6px;
+        padding: 0.7rem 2rem;
+        color: rgba(255,255,255, 0.8);
+        letter-spacing: 2px;
+        cursor: pointer;
+    }
+
+
+    .sail {
+        display: none;
+    }
+
+    .sail.is-visible {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        background-color: rgb(0, 0, 0, 0.4);
+    }
+
+    .container-rules-img {
+        position: relative;
+        background-color: #fff;
+        padding: 5em 2rem;
+        border-radius: 6px;
+        display: none;
+    }
+
+    .container-rules-img {
+        display: none;
+  }
+
+    .container-rules-img.is-visible {
+        display: block;;
+        position: relative;
+        background-color: #fff;
+        padding: 5em 2rem;
+        border-radius: 6px;
+    }
+
+    .container-rules-img img {
+        display: block;
+        padding-top: 2rem;
+    }
+
+    .rules-modal-title {
+        position: absolute;
+        top: 2rem;;
+        margin: 0;
+        padding: 0;
+        color: var(--dark-text);
+    }
+
+    #closeModal {
+        position: absolute;
+        top: 0.5rem;
+        right: 1.5rem;
+        font-size: 6rem;
+        cursor: pointer;
+    }
+
+    /* -------- ATTRIBUTION --------- */
+
+    .attribution {
+        display: none;
+    }
+
+}
+
+@media screen and (min-width: 768px) {
+
+    html {
+        font-size: 16px;
+    }
+
+    /* -------- HEADER --------- */
+
+    .logo {
+        width: 10rem;
+        height: auto;
+    }
+
+    .score-panel {
+        padding: 0 2.2rem;
+    }
+
+    #scoreInScreen {
+        font-size: 3.5rem;
+    }
+
+    .score-message {
+        font-size: 0.9rem;
+    }
+
+    /* -------- PADS --------- */
+
+    .container-pads {
+        margin: 4rem auto;
+    }
+
+    .pad {
+        width: 10rem;
+        height: 10rem;
+    }
+
+    .pad:first-of-type { /* PAPER */
+        left: 3rem;
+    }
+
+    .pad:nth-of-type(2) { /* ROCK */
+        top: 11rem;
+    }
+
+    .pad:nth-of-type(3) { /* SCISSORS */
+        right: 3rem
+    }
+
+    /* -------- MESSAGE CHOICE --------- */
+
+    .your-choice-msg {
+        left: -2.8rem;
+    }
+
+    .house-choice-msg {
+        left: 5rem;
+    }
+
+    .container-msg-choice.is-visible {
+        position: relative;
+        top: 7rem;
+        text-align: center;
+    }
+
+    #rock.rock-picked {
+        transform: translate(-3rem, -11rem);
+        transition: .150s ease-in-out; 
+    }
+
+    #scissors.scissors-picked {
+        transform: translate(-10rem);
+    }
+
+    .response-pad.is-visible {
+        width: 10rem;
+        height: 10rem;
+        left: -7rem;
+    }
+
+    .pad:hover::after {
+        width: 6rem;
+        height: 6rem;
+    }
+
+    .pad:first-of-type { /* PAPER */
+        border: 20px solid hsl(230, 89%, 62%);
+    }
+
+    .pad:nth-of-type(2) {  /* ROCK */ 
+        border: 20px solid hsl(349, 71%, 52%);
+    }
+
+    .pad:nth-of-type(3) { /* SCISSORS */
+        border: 20px solid hsl(40, 84%, 53%);
+    }
+    
+    .response-pad.response-rock {
+        border: 20px solid hsl(349, 71%, 52%);
+    }
+
+    .response-pad.response-paper {
+        border: 20px solid hsl(230, 89%, 62%);
+    }
+
+    .response-pad.response-scissors {
+        border: 20px solid hsl(40, 84%, 53%);
+    }
+
+        /* -------- ATTRIBUTION --------- */
+/* 
+        .attribution {
+           position: relative;
+           bottom: 1rem; 
+           right: 2rem;
+        }     
+*/
+    
+}
